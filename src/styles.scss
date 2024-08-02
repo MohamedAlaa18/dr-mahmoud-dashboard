@@ -1,0 +1,202 @@
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Readex+Pro:wght@160..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+html {
+  letter-spacing: 0.1px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  font-family: "El Messiri", sans-serif;
+  // font-family: "Cairo", sans-serif;
+  // font-family: "Tajawal", sans-serif;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --secondary: rgb(24, 24, , 27);
+
+  --border: rgb(66, 66, 66);
+
+  --active: rgba(255, 255, 255, 0.04);
+
+  --title: rgb(244, 244, 255);
+  --subtitle: rgb(82, 82, 91);
+
+  --bg: #212121;
+  --bg2: rgba(178, 190, 181, 0.2);
+
+  --icon-hover: #333;
+
+  --loading: #b2b2b2;
+  --checkbox: #cccccc4d;
+
+  --bg-light: rgb(45, 45, 50);
+
+  --btn1: linear-gradient(120deg, var(--color1), var(--color2));
+
+  --btn2: linear-gradient(120deg, var(--green1), var(--green2));
+
+  --color1: #FFC200;
+  --color2: #FF9D00;
+  --color3: #FF7300;
+
+  --color4: #F1F4F4;
+
+  --color5: #1976D3;
+  --color6: #07448E;
+
+  --green1: #067d68;
+  --green2: #50d5b7;
+
+  --red1: #D60000;
+  --red2: #FF5353;
+
+  --color2Shadow: rgba(246, 169, 27, 0.1);
+}
+
+.theme-light {
+  --secondary: rgb(255, 255, , 255);
+
+  --border: rgba(0, 0, 0, 0.12);
+
+  --active: rgba(0, 0, 0, 0.04);
+
+  --title: rgb(39, 39, 42);
+  --subtitle: rgb(161, 161, 170);
+
+  --bg: #FBFBFB;
+  --bg2: rgba(178, 190, 181, 0.7);
+
+  --icon-hover: #d4d4d8;
+
+  --loading: #f5f5f5;
+  --checkbox: #ccccccba;
+
+  --bg-light: rgb(205, 205, 200);
+}
+
+//custom buttons
+.custom-button,
+custom-checkbox.checked {
+  color: #ffffff !important;
+  background: var(--color1) !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+}
+
+.custom-button:hover {
+  background: var(--bg) !important;
+  color: var(--bgHeader) !important;
+  border: 1px solid var(--color2);
+}
+
+.green-button {
+  color: #ffffff !important;
+  background: linear-gradient(90deg, var(--green1, #f6d365), var(--green2, #fda085) 51%, var(--green1, #f6d365)) var(--x, 0)/ 200% !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+}
+
+.red-button {
+  color: #ffffff !important;
+  background: linear-gradient(90deg, var(--red1, #f6d365), var(--red2, #fda085) 51%, var(--red1, #f6d365)) var(--x, 0)/ 200% !important;
+  transition: 0.3s;
+  border-radius: 20rem;
+  width: 150px;
+}
+
+.custom-button:hover,
+.green-button:hover,
+.red-button:hover {
+  scale: 0.995;
+  --x: 100%;
+}
+
+.custom-button:disabled,
+.green-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  border: 7px solid var(--bg);
+  // box-shadow: inset 0 0 0px 1px var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--subtitle);
+  border-radius: 2px;
+  // border: 1px solid var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ag-theme-quartz {
+  /* Changes the color of the grid text */
+  --ag-foreground-color: var(--bgHeader);
+  /* Changes the color of the grid background */
+  --ag-background-color: var(--bg);
+  /* Changes the header color of the top row */
+  --ag-header-background-color: var(--bg);
+  /* Changes the hover color of the row*/
+  --ag-row-hover-color: var(--active);
+
+  --ag-wrapper-border-radius: 10px;
+
+  --ag-border-color: var(--border);
+}
+
+.ag-ltr {
+  direction: rtl !important;
+}
+
+.ag-theme-quartz .ag-ltr {
+  direction: rtl;
+}
+
+.ag-paging-panel {
+  border-top: none;
+}
+
+.ag-row .ag-cell {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+
+}

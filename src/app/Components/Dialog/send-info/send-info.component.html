@@ -1,0 +1,20 @@
+<div class="dialog-container pt-1 pb-4 px-2" dir="rtl">
+  <div class="flex justify-content-between">
+    <button mat-icon-button (click)="onNoClick()" style="color: red;"> <mat-icon>close</mat-icon></button>
+    <div></div>
+  </div>
+  <div class="flex flex-column justify-content-center mt-3">
+    <mat-form-field [formGroup]="sendInfoForm" appearance="outline" style="width: 100% !important;">
+      <mat-label>رسالتك</mat-label>
+      <textarea matInput type="text" formControlName="mail" id="mail" placeholder="أدخل رسالتك هنا"
+        aria-label="أدخل رسالتك هنا"></textarea>
+      <mat-icon matSuffix class="fa-solid fa-paper-plane"></mat-icon> <!-- Icon representing sending message -->
+      <mat-error *ngIf="sendInfoForm.get('mail')?.touched && sendInfoForm.get('mail')?.invalid">
+        <span *ngIf="sendInfoForm.get('mail')?.errors?.['pattern']" class="text-danger">الرسالة يجب أن تحتوي على نص</span>
+        <span *ngIf="sendInfoForm.get('mail')?.errors?.['required']" class="text-danger">الرسالة مطلوبة</span>
+      </mat-error>
+    </mat-form-field>
+    <button mat-button class="mt-3 custom-button" (click)="onYesClick()">إرسال
+    </button>
+  </div>
+</div>

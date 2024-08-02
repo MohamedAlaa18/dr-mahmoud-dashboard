@@ -1,0 +1,65 @@
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0),
+      var(--color1),
+      rgba(0, 0, 0, 0));
+}
+
+.logo {
+  position: relative;
+  padding: 0.5rem 0.7rem;
+  z-index: 4;
+}
+
+.logo a.logo-mini {
+  opacity: 1;
+  float: right;
+  text-align: right;
+  margin-left: 12px;
+  margin-right: 10px;
+}
+
+.logo a.logo-normal {
+  display: block;
+  opacity: 1;
+  transform: translate3d(0px, 0, 0);
+}
+
+.logo-img img {
+  width: 35px;
+}
+
+.simple-text {
+  margin-top: 16px;
+}
+
+.navigation-buttons button {
+  width: 100%;
+  border-radius: 0;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  font-size: 1.05rem;
+  /* color: white; */
+}
+
+.navigation-buttons button.active {
+  background-color: rgba(204, 204, 204, 0.7);
+  border-left: 4px solid var(--color2);
+  /* color: var(--bgHeader); */
+  color: black;
+}
+
+.navigation-buttons button.active i {
+  color: var(--color1);
+}
+
+.navigation-buttons ::ng-deep .mdc-button__label {
+  margin-left: auto;
+}
+
+.navigation-buttons i {
+  margin-left: 0.75rem;
+  font-size: 1.5rem;
+}

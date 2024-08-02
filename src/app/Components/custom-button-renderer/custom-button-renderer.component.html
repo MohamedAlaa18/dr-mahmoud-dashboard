@@ -1,0 +1,5 @@
+<div class="action-buttons">
+  <button *ngFor="let button of params.buttons" (click)="onClick(button.action)" [innerHTML]="button.icon" [ngClass]="button.text">
+    <!-- {{ button.text }} -->
+  </button>
+</div>

@@ -1,0 +1,68 @@
+<section class="flex justify-content-center" dir="rtl">
+  <div class="col-md-7 px-4 w-100">
+    <div class="text-center mt-5">
+      <h3 class="text-second mb-4" style="color: var(--color2); font-weight: 700;">
+        {{data.action == 'create' ? 'إنشاء كورس' :'تعديل الكورس'}}
+      </h3>
+    </div>
+
+    <form class="form-floating" [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <div class="col">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>عنوان الكورس</mat-label>
+          <input matInput type="text" formControlName="title" placeholder="عنوان الكورس" aria-label="عنوان الكورس"
+            required>
+          <mat-error *ngIf="courseForm.controls['title'].touched && courseForm.controls['title'].invalid">
+            <span class="text-danger" *ngIf="courseForm.controls['title'].errors?.['required']">عنوان الكورس
+              مطلوب</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>الوصف</mat-label>
+          <textarea matInput formControlName="description" placeholder="الوصف" aria-label="الوصف" required></textarea>
+          <mat-error *ngIf="courseForm.controls['description'].touched && courseForm.controls['description'].invalid">
+            <span class="text-danger" *ngIf="courseForm.controls['description'].errors?.['required']">الوصف مطلوب</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>الكود</mat-label>
+            <input matInput type="text" formControlName="code" placeholder="الكود" aria-label="الكود" required>
+            <mat-error *ngIf="courseForm.controls['code'].touched && courseForm.controls['code'].invalid">
+              <span class="text-danger" *ngIf="courseForm.controls['code'].errors?.['required']">الكود مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>السعر</mat-label>
+            <input matInput type="number" formControlName="price" placeholder="السعر" aria-label="السعر" required>
+            <mat-error *ngIf="courseForm.controls['price'].touched && courseForm.controls['price'].invalid">
+              <span class="text-danger" *ngIf="courseForm.controls['price'].errors?.['required']">السعر مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col">
+        <label class="w-100">الصورة</label>
+        <input type="file" (change)="onFileChange($event)" class="form-control" placeholder="الصورة" aria-label="الصورة"
+          required>
+        <mat-error *ngIf="fileInvalid">
+          <span class="text-danger">الصورة مطلوبة</span>
+        </mat-error>
+      </div>
+
+      <div class="d-grid gap-3 text-center my-4">
+        <button mat-button class="rounded-5 custom-button" type="submit">إنشاء كورس</button>
+      </div>
+    </form>
+  </div>
+</section>

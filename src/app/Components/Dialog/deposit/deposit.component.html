@@ -1,0 +1,21 @@
+<section class="flex justify-content-center" dir="rtl">
+  <div class="col-md-7 px-4 w-100">
+    <div class="text-center mt-5">
+      <h3 class="text-second mb-4" style="color: var(--color2); font-weight: 700;">إيداع</h3>
+    </div>
+
+    <form class="form-floating" [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>المبلغ</mat-label>
+        <input matInput type="number" formControlName="amount" placeholder="المبلغ" aria-label="المبلغ" required>
+        <mat-error *ngIf="depositForm.controls['amount'].touched && depositForm.controls['amount'].invalid">
+          <span class="text-danger" *ngIf="depositForm.controls['amount'].errors?.['required']">المبلغ مطلوب</span>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="d-grid gap-3 text-center my-4">
+        <button mat-button class="rounded-5 custom-button" type="submit">إيداع</button>
+      </div>
+    </form>
+  </div>
+</section>

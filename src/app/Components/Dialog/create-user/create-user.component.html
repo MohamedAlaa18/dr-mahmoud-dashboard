@@ -1,0 +1,99 @@
+<section class="flex justify-content-center" dir="rtl">
+  <div class="col-md-7 px-4 w-100">
+    <div class="text-center mt-5">
+      <h3 class="text-second mb-4" style="color: var(--color2); font-weight: 700;">إنشاء مستخدم</h3>
+    </div>
+
+    <form class="form-floating" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>الاسم الأول</mat-label>
+            <input matInput formControlName="firstName" placeholder="الاسم الأول" aria-label="الاسم الأول">
+            <mat-error *ngIf="userForm.controls['firstName'].touched && userForm.controls['firstName'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['firstName'].errors?.['required']">الاسم الأول مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>الاسم الثاني</mat-label>
+            <input matInput formControlName="secondName" placeholder="الاسم الثاني" aria-label="الاسم الثاني">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>الاسم الأخير</mat-label>
+            <input matInput formControlName="lastName" placeholder="الاسم الأخير" aria-label="الاسم الأخير">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>تاريخ الميلاد</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="تاريخ الميلاد" aria-label="تاريخ الميلاد">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="userForm.controls['birthDate'].touched && userForm.controls['birthDate'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['birthDate'].errors?.['required']">تاريخ الميلاد مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>الهاتف</mat-label>
+            <input matInput formControlName="mobileNo" placeholder="الهاتف" aria-label="الهاتف">
+            <mat-error *ngIf="userForm.controls['mobileNo'].touched && userForm.controls['mobileNo'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['mobileNo'].errors?.['required']">الهاتف مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>البريد الإلكتروني</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني">
+            <mat-error *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['required']">البريد الإلكتروني مطلوب</span>
+              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['email']">البريد الإلكتروني غير صحيح</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>رقم الواتساب</mat-label>
+            <input matInput formControlName="whatsAppNo" placeholder="رقم الواتساب" aria-label="رقم الواتساب">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>نوع المستخدم</mat-label>
+            <mat-select formControlName="roles" placeholder="نوع المستخدم" aria-label="نوع المستخدم" multiple>
+              <mat-option *ngFor="let type of userTypes" [value]="type.value">{{ type.viewValue }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.controls['roles'].touched && userForm.controls['roles'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['roles'].errors?.['required']">نوع المستخدم مطلوب</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-grid gap-3 text-center my-4">
+        <button mat-button class="rounded-5 custom-button" type="submit">إنشاء مستخدم</button>
+      </div>
+    </form>
+  </div>
+</section>

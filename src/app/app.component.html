@@ -1,0 +1,22 @@
+<div class="main-container">
+  <app-header [inputSideBar]="sideNav"></app-header>
+
+  <mat-sidenav-container>
+    <mat-sidenav class="mat-sidenav" position="end" #sideNav mode="side" opened>
+      <app-side-bar></app-side-bar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="mainContent p-5">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+  <div class="background-image"></div>
+</div>
+
+<!-- <div *ngIf="role !== 'Admin'">
+  <app-login></app-login>
+</div> -->

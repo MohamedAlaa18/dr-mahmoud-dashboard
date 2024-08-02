@@ -1,0 +1,41 @@
+.action-buttons {
+  width: fit-content;
+  transition: 0.3s;
+  border-radius: 100%;
+  padding: 0rem 0.25rem;
+}
+
+.action-buttons:hover {
+  opacity: 1;
+  background-color: var(--active);
+}
+
+.action-buttons button {
+  background-color: transparent;
+  color: var(--bgHeader);
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.action-buttons button:active {
+  scale: 0.97;
+}
+
+.approve,
+.deposit {
+  color: var(--green1) !important;
+}
+
+.reject,
+.delete {
+  color: var(--red1) !important;
+}
+
+.info,
+.copy {
+  color: var(--color5) !important;
+}
+
+.sendInfo:hover {
+  color: #00aeef !important;
+}

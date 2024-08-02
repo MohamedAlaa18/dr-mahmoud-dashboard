@@ -1,0 +1,201 @@
+mat-toolbar {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  /* background-image: linear-gradient(to right, #ffc4006f, #ffc40025, #ffc40025, var(--back-ground)); */
+  box-shadow: 0 4px 6px -1px var(--active), 0 2px 4px -1px var(--active);
+  /* background-color: transparent; */
+}
+
+a.sideNav-button {
+  display: inline;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 10px;
+  transition: all 0.3 ease 0s;
+  cursor: pointer;
+}
+
+a.sideNav-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3 ease 0s;
+}
+
+.profile {
+  border: 1px solid var(--border);
+  padding: 1px;
+  box-shadow: var(--color2) 0px 0px 0px 3px inset;
+}
+
+.profile:hover {
+  box-shadow: var(--color2) 0px 0px 3px 3px inset;
+}
+
+.dropdown-toggle {
+  background-color: var(--active);
+  border: 1px solid var(--border);
+}
+
+.dropdown-toggle::after {
+  margin-right: 0.25rem;
+}
+
+label {
+  width: 50px;
+  height: 20px;
+  position: relative;
+  display: block;
+  background: #ebebeb;
+  border-radius: 200px;
+  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+label::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 180px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+label svg {
+  position: absolute;
+  width: 12px;
+  top: 4px;
+  z-index: 10;
+}
+
+label svg.sun {
+  left: 4px;
+  fill: #fff;
+  transition: 0.3s;
+}
+
+label svg.moon {
+  right: 4px;
+  fill: #7e7e7e;
+  transition: 0.3s;
+}
+
+input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+input:checked+label {
+  background: #242424;
+}
+
+input:checked+label::after {
+  left: 22px;
+  transform: translateX(50%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+input:checked+label svg.sun {
+  fill: #7e7e7e;
+}
+
+input:checked+label svg.moon {
+  fill: #fff;
+}
+
+input:checked+label+.background {
+  background: #242424;
+}
+
+input:active:after {
+  width: 2.6px;
+}
+
+.logo {
+  width: 150px;
+}
+
+@media (max-width: 520px) {
+  .logo {
+    width: 125px;
+  }
+}
+
+/* ----------------------------------- */
+
+::ng-deep .mat-mdc-dialog-surface,
+::ng-deep .mat-mdc-menu-panel,
+::ng-deep .mat-mdc-select-panel.ng-trigger,
+::ng-deep .mat-datepicker-content {
+  background-color: var(--bg) !important;
+  box-shadow: var(--border) 0px 0px 0px 1px !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .mdc-snackbar__surface,
+::ng-deep .mat-mdc-snack-bar-label {
+  background-color: brown !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .snackbar-success .mdc-snackbar__surface,
+::ng-deep .snackbar-success .mat-mdc-snack-bar-label {
+  background-color: green !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-actions .mdc-button__label,
+::ng-deep .mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
+/* Change the border color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--bgHeader) !important;
+  transition: 0.3s;
+}
+
+/* Change the border width */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-width: 1.5px !important;
+}
+
+/* Change the border focused color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: var(--color2) !important;
+}
+
+/* Change the border hover color */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: var(--color2) !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  margin-top: 0.65rem !important;
+}
+
+::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text,
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full::after {
+  color: #4bb543 !important;
+}
+
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full {
+  border: 2px solid #4bb543 !important;
+}
+
+::ng-deep mat-label,
+::ng-deep [class*="ng-tns-c1205077789"] {
+  color: var(--secondary) !important;
+}
