@@ -58,12 +58,8 @@
 
         <div class="col">
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>البريد الإلكتروني</mat-label>
-            <input matInput type="email" formControlName="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني">
-            <mat-error *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid">
-              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['required']">البريد الإلكتروني مطلوب</span>
-              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['email']">البريد الإلكتروني غير صحيح</span>
-            </mat-error>
+            <mat-label>رقم الواتساب</mat-label>
+            <input matInput formControlName="whatsAppNo" placeholder="رقم الواتساب" aria-label="رقم الواتساب">
           </mat-form-field>
         </div>
       </div>
@@ -71,8 +67,12 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>رقم الواتساب</mat-label>
-            <input matInput formControlName="whatsAppNo" placeholder="رقم الواتساب" aria-label="رقم الواتساب">
+            <mat-label>البريد الإلكتروني</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني">
+            <mat-error *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid">
+              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['required']">البريد الإلكتروني مطلوب</span>
+              <span class="text-danger" *ngIf="userForm.controls['email'].errors?.['email']">البريد الإلكتروني غير صحيح</span>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>

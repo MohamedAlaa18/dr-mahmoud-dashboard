@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CourseService } from 'src/app/Services/course/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-course',
@@ -15,9 +16,11 @@ export class CreateCourseComponent implements OnInit {
   fileInvalid: boolean = false;
 
   constructor(
+    public dialogRef: MatDialogRef<CreateCourseComponent>,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private courseService: CourseService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
@@ -27,6 +30,28 @@ export class CreateCourseComponent implements OnInit {
       description: ['', Validators.required],
       code: ['', Validators.required],
       price: [0, Validators.required],
+    });
+
+    if (this.data.action === 'update' && this.data.courseId) {
+      this.getCourse(this.data.courseId);
+    }
+  }
+
+  getCourse(courseId: number) {
+    this.courseService.getCourse(courseId).subscribe({
+      next: (course) => {
+        this.courseForm.patchValue({
+          title: course.content.title,
+          description: course.content.description,
+          code: course.content.code,
+          price: course.content.price
+        });
+        console.log(course);
+      },
+      error: (err) => {
+        console.error(err);
+        this.openSnackBar('فشل في جلب بيانات الكورس', 'حسناً');
+      }
     });
   }
 
@@ -39,8 +64,8 @@ export class CreateCourseComponent implements OnInit {
   }
 
   onSubmit() {
-    if ((this.courseForm.valid && this.file) || this.data.action === 'update') {
-      if (this.data.action == 'update') {
+    if (this.courseForm.valid && (this.file || this.data.action === 'update')) {
+      if (this.data.action === 'update') {
         this.updateCourse();
       } else {
         this.createCourse();
@@ -55,26 +80,24 @@ export class CreateCourseComponent implements OnInit {
 
   createCourse() {
     const formData = this.courseForm.value;
-    if (this.file) {
-      this.courseService.createCourse(formData, this.file).subscribe({
-        next: (data) => {
-          // Handle success
-          console.log(data);
-          this.openSnackBar('تم إنشاء الكورس بنجاح', 'حسناً');
-        },
-        error: (err) => {
-          // Handle error
-          console.error(err);
-          this.openSnackBar('فشل في إنشاء الكورس', 'حسناً');
-        }
-      });
-    }
+
+    this.courseService.createCourse(formData, this.file).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.openSnackBar('تم إنشاء الكورس بنجاح', 'حسناً');
+        this.reloadCurrentRoute();
+        this.dialogRef.close(false);
+      },
+      error: (err) => {
+        console.error(err);
+        this.openSnackBar('فشل في إنشاء الكورس', 'حسناً');
+      }
+    });
   }
 
   updateCourse() {
     const formData: any = {};
 
-    // Only add non-empty fields to formData
     for (const key in this.courseForm.controls) {
       const control = this.courseForm.controls[key];
       if (control.value) {
@@ -88,12 +111,12 @@ export class CreateCourseComponent implements OnInit {
 
     this.courseService.updateCourse(formData, this.file).subscribe({
       next: (data) => {
-        // Handle success
         console.log(data);
         this.openSnackBar('تم تحديث الكورس بنجاح', 'حسناً');
+        this.reloadCurrentRoute();
+        this.dialogRef.close(false);
       },
       error: (err) => {
-        // Handle error
         console.error(err);
         this.openSnackBar('فشل في تحديث الكورس', 'حسناً');
       }
@@ -106,6 +129,13 @@ export class CreateCourseComponent implements OnInit {
       verticalPosition: 'bottom',
       horizontalPosition: 'right',
       panelClass: message === 'تم إنشاء الكورس بنجاح' || message === 'تم تحديث الكورس بنجاح' ? 'snackbar-success' : ''
+    });
+  }
+
+  reloadCurrentRoute(): void {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
   }
 }

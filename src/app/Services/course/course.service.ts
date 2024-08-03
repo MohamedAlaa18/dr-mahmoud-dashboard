@@ -24,6 +24,15 @@ export class CourseService {
     return token;
   }
 
+  getCourse(courseId: number): Observable<any> {
+    const token = this.getTokenFromCookies();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.httpClient.get<any>(`${this.URL}/courses/${courseId}`, { headers });
+  }
+
   createCourse(course: ICourseForm, photo: File): Observable<any> {
     const formData = new FormData();
     formData.append('course', new Blob([JSON.stringify(course)], { type: 'multipart/form-data' }));

@@ -44,7 +44,7 @@ export class CoursesComponent implements OnInit {
           {
             text: 'info',
             icon: '<i class="fa-solid fa-edit"></i>',
-            action: (id: string) => this.openUpdate(id)
+            action: (id: number) => this.openUpdate(id)
           }
         ]
       }
@@ -117,7 +117,7 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  openUpdate(id: string): void {
+  openUpdate(id: number): void {
     this.dialog.open(CreateCourseComponent, {
       panelClass: 'dialog-container',
       autoFocus: false,

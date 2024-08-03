@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Services/user/user.service'; // Ensure this path is correct
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user',
@@ -10,12 +12,14 @@ import { UserService } from 'src/app/Services/user/user.service'; // Ensure this
 })
 export class CreateUserComponent implements OnInit {
   userForm!: FormGroup;
-  userTypes: { value: number, viewValue: string }[] = []; // Adjusted type for role IDs
+  userTypes: { value: number, viewValue: string }[] = [];
 
   constructor(
+    public dialogRef: MatDialogRef<CreateUserComponent>,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -59,6 +63,8 @@ export class CreateUserComponent implements OnInit {
           console.log(data);
           this.openSnackBar('تم إنشاء المستخدم بنجاح', 'حسناً');
           this.userForm.reset();
+          this.reloadCurrentRoute();
+          this.dialogRef.close(false);
         },
         error: (err) => {
           // Handle error
@@ -76,7 +82,14 @@ export class CreateUserComponent implements OnInit {
       duration: 2000,
       verticalPosition: 'bottom',
       horizontalPosition: 'right',
-      panelClass: message === 'User created successfully' ? 'snackbar-success' : ''
+      panelClass: message === 'تم إنشاء المستخدم بنجاح' ? 'snackbar-success' : ''
+    });
+  }
+
+  reloadCurrentRoute(): void {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
   }
 }
